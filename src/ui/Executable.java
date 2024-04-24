@@ -25,8 +25,8 @@ public class Executable {
 		while (!flag) {
 
 			System.out.println("\n \n Bienvenido al menu:\n");
-			System.out.println("Opciones:\n" + "1. Registrar estudiante \n" + "2. Imprimir estudiantes\n"
-					+ "3. Crear semestre a estudiante \n" + "4. Mostrar semestres de un estudiante \n" + "5. Salir del programa \n");
+			System.out.println("Opciones:\n" + "1. Crear tienda \n" + "2. Mostrar tiendas \n"
+					+ "3. \n" + "4.  \n" + "5. Salir del programa \n");
 
 			int option = reader.nextInt();
 
@@ -34,16 +34,16 @@ public class Executable {
 
 			switch (option) {
 					case 1:
-						registrarEstudiante();
+						crearTienda();
 						break;
 					case 2:
-						imprimirEstudiantes();
+						imprimirTiendas();
 						break;
 					case 3:
-						crearSemestreAEstudiante();
+						//crearSemestreAEstudiante();
 						break;
 					case 4:
-						imprimirSemestresDeEstudiante();
+						//imprimirSemestresDeEstudiante();
 						break;
 					case 5:
 						flag = true;
@@ -62,44 +62,47 @@ public class Executable {
 		Executable mainApp = new Executable();
 		mainApp.run(flag);
 	}
-
-	public void registrarEstudiante() {
+	
+	public void crearTienda() {
 		
-		String nombreEstudiante, codigoEstudiante;
-		int edadEstudiante;
+		// Siendo consistente con los datos base que necesita Tienda
+		String nombreTienda, direccion, codigoPostal;
 		
-		System.out.println("Ingrese nombre del estudiante: ");
+		System.out.println("Ingrese nombre de la tienda: ");
 		
-		nombreEstudiante = reader.nextLine();
+		nombreTienda = reader.nextLine();
 		
-		System.out.println("Ingrese edad del estudiante: ");
+		while(cont.chequeoNombreDeTienda(nombreTienda)) {
+			System.out.println("Ingrese otro nombre de la tienda (el anterior ya tomado): ");
+			
+			nombreTienda = reader.nextLine();
+		}
 		
-		edadEstudiante = reader.nextInt();
+		// reader.nextLine(); // Limpiar el buffer
 		
-		reader.nextLine(); // Limpiar el buffer
+		System.out.println("Ingrese direccion de la tienda: ");
 		
-		System.out.println("Ingrese codigo del estudiante: ");
+		direccion = reader.nextLine();
 		
-		codigoEstudiante = reader.nextLine();
+		System.out.println("Ingrese codigo postal de la tienda: ");
 		
-		//System.out.println("Datos del estudiante: \n" + 
-		//"Nombre: " + nombreEstudiante + "\n" + 
-		//"Edad: " + edadEstudiante + "\n" + 
-		//"Codigo: " + codigoEstudiante);
+		codigoPostal = reader.nextLine();
 		
+		// Nos comunicamos con la controladora para crear tienda
 		
-		cont.agregarEstudiante(cont.crearEstudiante(nombreEstudiante, edadEstudiante, codigoEstudiante));
+		cont.agregarTienda(cont.crearTienda(nombreTienda, direccion, codigoPostal));
+	
 	}
+	
+	public void imprimirTiendas() {
 
-	public void imprimirEstudiantes() {
+		int cantidadTiendas = cont.obtenerCantidadTiendas();
 
-		int cantidadEstudiantes = cont.obtenerCantidadEstudiantes();
-
-		for(int i = 0; i <= cantidadEstudiantes; i++) {
-			String impresionEstudiante = cont.listarEstudiante(i);
-			if(impresionEstudiante != "") {
-				System.out.println("Estudiante " + (i+1) + ": "); 
-				System.out.println(impresionEstudiante);
+		for(int i = 0; i <= cantidadTiendas; i++) {
+			String impresionTienda = cont.listarTienda(i);
+			if(impresionTienda != "") {
+				System.out.println("Tienda " + (i+1) + ": "); 
+				System.out.println(impresionTienda);
 			} else {
 				break;
 			}
@@ -108,48 +111,9 @@ public class Executable {
 		
 	}
 
-	public void crearSemestreAEstudiante() {
 
-		String codigoEstudiante;
-
-
-		System.out.println("Ingrese el codigo del estudiante al que le vamos a crear el semestre: ");
-
-		codigoEstudiante = reader.nextLine();
-
-		String nombrePeriodoSemestre;
-
-		System.out.println("Ingrese el nombre del periodo del semestre: ");
-
-		nombrePeriodoSemestre = reader.nextLine();
-
-		cont.asociarSemestreConEstudiante(cont.buscarEstudiantePorCodigo(codigoEstudiante), cont.crearSemestre(nombrePeriodoSemestre));
-
-
-
-	}
-
-	public void imprimirSemestresDeEstudiante() {
-
-		String codigoEstudiante;
-
-		System.out.println("Ingrese el codigo del estudiante al que le vamos a averiguar el semestre: ");
-
-		codigoEstudiante = reader.nextLine();
-
-
-
-		for(int i = 0; i <= cont.buscarEstudiantePorCodigo(codigoEstudiante).cuantosSemestres(); i++) {
-			String impresionEstudiante = cont.listarSemestre(i, cont.buscarEstudiantePorCodigo(codigoEstudiante));
-			if(impresionEstudiante != "") {
-				System.out.println(impresionEstudiante);
-			} else {
-				break;
-			}
-			
-		}
-		
-	}
+	
+	
 
 
 

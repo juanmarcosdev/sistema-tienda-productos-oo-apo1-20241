@@ -1,4 +1,11 @@
 package model;
+import model.Producto;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Tienda { // Atributos de la clase
     private String nombreTienda;
@@ -31,7 +38,54 @@ public class Tienda { // Atributos de la clase
         this.direccion = direccion;
     }
 	
+	public String getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+	
+	public Producto[] getProductos() {
+        return productos;
+    }
+
+    public void setProductos(Producto[] productos) {
+        this.productos = productos;
+    }
+	
 	// Métodos útiles
+	
+	// Método que crea un Producto a partir de sus datos base
+	
+	// Método empaquetador 
+	
+	public Producto crearProducto(String nombreProducto, 
+					double precioProducto, 
+					Calendar fechaCaducidad, 
+					String referencia, 
+					int cantidad) {
+		// Instanciación de un nuevo Producto
+		Producto producto = new Producto(nombreProducto, 
+					precioProducto, 
+					fechaCaducidad, 
+					referencia, 
+					cantidad);
+    	return producto;
+    }
+	
+	
+	
+	public void agregarProducto(Producto producto) {
+        for (int i = 0; i < productos.length; i++) {
+            if (productos[i] == null) {
+                productos[i] = producto;
+                break;
+            }
+        }
+    }
+	
+	
 
 
 }

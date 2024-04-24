@@ -21,15 +21,13 @@ public class Producto { // Atributos de la clase
 					double precioProducto, 
 					Calendar fechaCaducidad, 
 					String referencia, 
-					int cantidad, 
-					Categoria catProducto) 
+					int cantidad) 
 	{
 		this.nombreProducto = nombreProducto;
 		this.precioProducto = precioProducto;
 		this.fechaCaducidad = fechaCaducidad;
 		this.referencia = referencia;
 		this.cantidad = cantidad;
-		this.catProducto = catProducto;
     }
 	
 	// Setters y Getters
@@ -83,6 +81,8 @@ public class Producto { // Atributos de la clase
 	}
 	
 	// Métodos útiles
-
-
+	
+	public Categoria devolverCategoriaSegunOpcion(int opcion) {
+		return Categoria.values()[opcion];
+	}
 }
