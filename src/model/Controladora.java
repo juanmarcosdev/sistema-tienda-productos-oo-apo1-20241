@@ -77,6 +77,16 @@ public class Controladora {
 		return existe;
 	}
 
+	public void eliminarTienda(String nombreTiendaAEliminar) {
+		for (int i = 0; i < tiendas.length; i++) {
+            if (tiendas[i] != null) {
+				if(tiendas[i].getNombreTienda().equalsIgnoreCase(nombreTiendaAEliminar)) {
+					tiendas[i] = null;
+				}
+            }
+        }
+	}
+
 	
 
 }

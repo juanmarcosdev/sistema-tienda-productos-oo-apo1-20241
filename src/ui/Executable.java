@@ -26,7 +26,7 @@ public class Executable {
 
 			System.out.println("\n \n Bienvenido al menu:\n");
 			System.out.println("Opciones:\n" + "1. Crear tienda \n" + "2. Mostrar tiendas \n"
-					+ "3. \n" + "4.  \n" + "5. Salir del programa \n");
+					+ "3. Eliminar tienda \n" + "4.  \n" + "5. Salir del programa \n");
 
 			int option = reader.nextInt();
 
@@ -40,10 +40,10 @@ public class Executable {
 						imprimirTiendas();
 						break;
 					case 3:
-						//crearSemestreAEstudiante();
+						eliminarTienda();
 						break;
 					case 4:
-						//imprimirSemestresDeEstudiante();
+						//
 						break;
 					case 5:
 						flag = true;
@@ -108,6 +108,20 @@ public class Executable {
 			}
 			
 		}
+		
+	}
+
+	public void eliminarTienda() {
+
+		String nombreTienda;
+		
+		System.out.println("Ingrese nombre de la tienda a eliminar: ");
+
+		nombreTienda = reader.nextLine();
+
+		cont.eliminarTienda(nombreTienda);
+
+		
 		
 	}
 
