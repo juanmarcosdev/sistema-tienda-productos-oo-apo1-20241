@@ -1,5 +1,11 @@
 package model;
 import model.Tienda;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Controladora {
     private Tienda[] tiendas;
@@ -85,6 +91,45 @@ public class Controladora {
 				}
             }
         }
+	}
+
+	public Tienda busquedaNombreDeTienda(String nombrePosible) {
+		Tienda tiendaARetornar = null;
+		for (int i = 0; i < tiendas.length; i++) {
+            if (tiendas[i] != null && tiendas[i].getNombreTienda().equalsIgnoreCase(nombrePosible)) {
+				tiendaARetornar = tiendas[i];
+            }
+        }
+		return tiendaARetornar;
+	}
+
+	public void agregarYCrearProductoATienda(Tienda tienda, String nombreProducto, double precioProducto, String strFechaCaducidad, String referencia, int cantidad) {
+
+		DateFormat formateador = new SimpleDateFormat("dd/M/yy");
+
+		Calendar calendario = new GregorianCalendar();
+
+		try {
+
+			Date fecha = formateador.parse(strFechaCaducidad);
+
+			calendario.setTime(fecha);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+		tienda.agregarProducto(tienda.crearProducto(nombreProducto, precioProducto, calendario, referencia, cantidad));
+
+	}
+
+	public int obtenerCantidadProductosDeTienda(Tienda tienda) {
+		return tienda.obtenerCantidadProductos();
+	}
+
+	public String listarProductoDeTienda(Tienda tienda, int indice) {
+		return tienda.listarProducto(indice);
 	}
 
 	

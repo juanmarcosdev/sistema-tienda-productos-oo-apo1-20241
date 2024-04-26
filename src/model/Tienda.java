@@ -1,7 +1,6 @@
 package model;
 import model.Producto;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -82,6 +81,29 @@ public class Tienda { // Atributos de la clase
                 productos[i] = producto;
                 break;
             }
+        }
+    }
+
+    public int obtenerCantidadProductos() {
+		int contadorDeProductosVerdaderos = 0;
+		for (int i = 0; i < productos.length; i++) {
+            if (productos[i] != null) {
+                contadorDeProductosVerdaderos++;
+            }
+        }
+		return contadorDeProductosVerdaderos;
+	}
+
+	public String listarProducto(int indice) {
+
+		DateFormat formateador = new SimpleDateFormat("dd/M/yy");
+
+        if (indice >= 0 && indice < productos.length && productos[indice] != null) {
+            Producto producto = productos[indice];
+            return "Nombre del Producto: " + producto.getNombreProducto() + "\n" +
+            		"Fecha de caducidad" + formateador.format(producto.getFechaCaducidad().getTime()) + "\n";
+        } else {
+            return "";
         }
     }
 	
