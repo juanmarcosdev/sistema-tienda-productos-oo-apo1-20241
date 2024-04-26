@@ -92,6 +92,8 @@ public class Controladora {
             }
         }
 	}
+	
+	// A partir de un nombre de una tienda (debe de existir), me retorna con la Tienda
 
 	public Tienda busquedaNombreDeTienda(String nombrePosible) {
 		Tienda tiendaARetornar = null;
@@ -103,26 +105,39 @@ public class Controladora {
 		return tiendaARetornar;
 	}
 
+	// Este metodo recibe como entrada una Tienda, que será la tienda que identificaremos con su nombre
+	// y esta Tienda sera quien reciba el producto a crear.
+	// Lo demás que recibe son los datos necesarios para crear un objeto de tipo Producto.
 	public void agregarYCrearProductoATienda(Tienda tienda, String nombreProducto, double precioProducto, String strFechaCaducidad, String referencia, int cantidad) {
 
-		DateFormat formateador = new SimpleDateFormat("dd/M/yy");
-
+		// Declaramos una variable que será de tipo DateFormat (debe estar importado)
+		// DateFormat es util para establecer un formato de fecha específico.
+		DateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
+		// Crear un objeto de tipo Calendar. Este tendrá el calendario Gregoriano.
 		Calendar calendario = new GregorianCalendar();
+		// Lo que haremos con este objeto de tipo Calendario
+		// será asociarlo a la fecha ingresada por el usuario.
 
+		// Try-Catch es una instrucción que sirve para manejar errores.
 		try {
 
+			// Creamos una variable de tipo Date que estará asociada al String de la fecha caducidad
+			// que ingresó el usuario.
 			Date fecha = formateador.parse(strFechaCaducidad);
 
+			// Asociar mi variable de tipo Calendar con la Fecha (Date) del usuario.
 			calendario.setTime(fecha);
 
-        } catch (ParseException e) {
-            e.printStackTrace();
+        } catch (ParseException error) {
+            error.printStackTrace(); // Impresión de error manual
         }
 
 
 		tienda.agregarProducto(tienda.crearProducto(nombreProducto, precioProducto, calendario, referencia, cantidad));
 
 	}
+	
+	// 
 
 	public int obtenerCantidadProductosDeTienda(Tienda tienda) {
 		return tienda.obtenerCantidadProductos();
@@ -130,6 +145,14 @@ public class Controladora {
 
 	public String listarProductoDeTienda(Tienda tienda, int indice) {
 		return tienda.listarProducto(indice);
+	}
+	
+	public void crearObjetosDePrueba() {
+		// Voy a crear una Tienda por defecto, como Tienda comunica con la Controladora
+		// Me apoyo en los mismos métodos que ya tengo para realizarlo
+		// Al llamar métodos de la controladora dentro de la misma controladora, no debo especificar 
+		// "cont" o una variable donde esté controladora, pues ya me encuentro en la controladora.
+		agregarTienda(crearTienda("JPGR", "Cra 100 # 16-321", "760039"));
 	}
 
 	

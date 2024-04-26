@@ -59,6 +59,8 @@ public class Tienda { // Atributos de la clase
 	
 	// Método empaquetador 
 	
+	// Consistente con los datos que el constructor de Producto me solicita
+	
 	public Producto crearProducto(String nombreProducto, 
 					double precioProducto, 
 					Calendar fechaCaducidad, 
@@ -83,6 +85,12 @@ public class Tienda { // Atributos de la clase
             }
         }
     }
+	
+	// DIVISION CORRECTA DE RESPONSABILIDADES
+	// La Controladora tiene comunicación con las Tiendas.
+	// Las Tiendas poseen productos (máximo 5).
+	// Las Tiendas SON las encargadas de la gestión de sus productos.
+	// La Controladora es encargada de la gestión de las tiendas.
 
     public int obtenerCantidadProductos() {
 		int contadorDeProductosVerdaderos = 0;
@@ -96,7 +104,7 @@ public class Tienda { // Atributos de la clase
 
 	public String listarProducto(int indice) {
 
-		DateFormat formateador = new SimpleDateFormat("dd/M/yy");
+		DateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
 
         if (indice >= 0 && indice < productos.length && productos[indice] != null) {
             Producto producto = productos[indice];

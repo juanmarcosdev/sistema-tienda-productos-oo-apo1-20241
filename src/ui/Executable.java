@@ -26,7 +26,7 @@ public class Executable {
 
 			System.out.println("\n \n Bienvenido al menu:\n");
 			System.out.println("Opciones:\n" + "1. Crear tienda \n" + "2. Mostrar tiendas \n"
-					+ "3. Eliminar tienda \n" + "4. Crear producto en tienda \n" + "5. Listar productos de Tienda \n" + "6. Salir del programa \n");
+					+ "3. Eliminar tienda \n" + "4. Crear producto en tienda \n" + "5. Listar productos de Tienda \n" + "6. Crear objetos de prueba \n" + "7. Salir del programa \n");
 
 			int option = reader.nextInt();
 
@@ -49,6 +49,9 @@ public class Executable {
 						listarProductosTienda();
 						break;
 					case 6:
+						crearObjetosPrueba();
+						break;
+					case 7:
 						flag = true;
 						System.exit(0);
 						break;
@@ -135,6 +138,15 @@ public class Executable {
 		System.out.println("Ingrese nombre de Tienda donde se creará el producto: ");
 
 		nombreTienda = reader.nextLine();
+		
+		/*
+		
+		while(cont.busquedaNombreDeTienda(nombreTienda) == null) {
+			System.out.println("Ingrese otro nombre de la tienda (no existe la tienda ingresada): ");
+			
+			nombreTienda = reader.nextLine();
+		}
+		*/
 
 		String nombreProducto, strFechaCaducidad, referencia; 
 		double precioProducto;
@@ -144,7 +156,7 @@ public class Executable {
 
 		nombreProducto = reader.nextLine();
 
-		System.out.println("Ingrese fecha de caducidad del producto en formato dd/M/yy: ");
+		System.out.println("Ingrese fecha de caducidad del producto en formato dd-MM-yyyy: "); // Especificar formato de fecha SIEMPRE que sea posible
 
 		strFechaCaducidad = reader.nextLine();
 
@@ -172,6 +184,8 @@ public class Executable {
 
 		nombreTienda = reader.nextLine();
 
+		// Dado el nombre de la tienda que ingresó el usuario
+		// En esa tienda, consulto la cantidad de productos que hay
 		int cantidadProductos = cont.obtenerCantidadProductosDeTienda(cont.busquedaNombreDeTienda(nombreTienda));
 
 		for(int i = 0; i <= cantidadProductos; i++) {
@@ -185,6 +199,12 @@ public class Executable {
 			
 		}
 
+	}
+	
+	public void crearObjetosPrueba() {
+		// Ahora si debo referenciar a la controladora
+		cont.crearObjetosDePrueba();
+		System.out.println("Objetos creados");
 	}
 
 
