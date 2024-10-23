@@ -153,6 +153,22 @@ public class Controladora {
 		// Al llamar métodos de la controladora dentro de la misma controladora, no debo especificar 
 		// "cont" o una variable donde esté controladora, pues ya me encuentro en la controladora.
 		agregarTienda(crearTienda("JPGR", "Cra 100 # 16-321", "760039"));
+		agregarTienda(crearTienda("D1", "Cra 125 #18-100", "760017"));
+		// Vamos a buscar una tienda en especifico (JPGR), y con ella crearemos productos
+		Tienda tiendaALaQueLeAgregareProductos = busquedaNombreDeTienda("D1");
+		/*
+		agregarYCrearProductoATienda(tiendaALaQueLeAgregareProductos, "Yogurt Griego Uchuva", 3400.0, "04-11-2024", "AX8973", 5);
+		agregarYCrearProductoATienda(tiendaALaQueLeAgregareProductos, "Yogurt Griego Frutos Rojos", 3600.0, "27-10-2024", "AX4873", 3);
+		*/
+		String nombreProducto = "Producto "
+		double precioProducto = 2000.0;
+		String referenciaBase = "AX8973";
+		for(int i = 0; i < 3; i++) {
+			nombreProducto += (i+1);
+			agregarYCrearProductoATienda(tiendaALaQueLeAgregareProductos, nombreProducto, precioProducto, "04-11-2024", referenciaBase, i+1);
+			precioProducto += 500.0;
+			referenciaBase = referenciaBase + (i+1);
+		}
 	}
 
 	

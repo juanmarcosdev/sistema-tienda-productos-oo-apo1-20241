@@ -109,7 +109,10 @@ public class Tienda { // Atributos de la clase
         if (indice >= 0 && indice < productos.length && productos[indice] != null) {
             Producto producto = productos[indice];
             return "Nombre del Producto: " + producto.getNombreProducto() + "\n" +
-            		"Fecha de caducidad" + formateador.format(producto.getFechaCaducidad().getTime()) + "\n";
+            		"Fecha de caducidad " + formateador.format(producto.getFechaCaducidad().getTime()) + "\n" +
+                    "Precio del producto " + producto.getPrecio() + "\n" +
+                    "Referencia del producto " + producto.getReferencia() + "\n" + 
+                    "Cantidad del producto " + producto.getCantidad() + "\n";
         } else {
             return "";
         }
